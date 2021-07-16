@@ -12,7 +12,7 @@ __all__ = ['reproject_and_coadd']
 def reproject_and_coadd(input_data, output_projection, shape_out=None,
                         input_weights=None, hdu_in=None, reproject_function=None,
                         hdu_weights=None, combine_function='mean', match_background=False,
-                        background_reference=None, **kwargs):
+                        background_reference=None, testvar=None, **kwargs):
     """
     Given a set of input images, reproject and co-add these to a single
     final image.
@@ -190,8 +190,6 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
             corrections -= corrections[background_reference]
         for array, correction in zip(arrays, corrections):
             array.array -= correction
-            
-    print("THIS IS A TEST")
 
     # At this point, the images are now ready to be co-added.
 
