@@ -195,31 +195,31 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
 
     # TODO: provide control over final dtype
 
-    final_array = np.zeros(shape_out)
-    final_footprint = np.zeros(shape_out)
-
-    if combine_function in ('mean', 'sum'):
-
-        for array in arrays:
-
+#    final_array = np.zeros(shape_out)
+#    final_footprint = np.zeros(shape_out)
+#
+#    if combine_function in ('mean', 'sum'):
+#
+#        for array in arrays:
+#
             # By default, values outside of the footprint are set to NaN
             # but we set these to 0 here to avoid getting NaNs in the
             # means/sums.
-            array.array[array.footprint == 0] = 0
-
-            final_array[array.view_in_original_array] += array.array * array.footprint
-            final_footprint[array.view_in_original_array] += array.footprint
-
-        if combine_function == 'mean':
-            with np.errstate(invalid='ignore'):
-                final_array /= final_footprint
-
-    elif combine_function == 'median':
-
+#            array.array[array.footprint == 0] = 0
+#
+#            final_array[array.view_in_original_array] += array.array * array.footprint
+#            final_footprint[array.view_in_original_array] += array.footprint
+#
+#        if combine_function == 'mean':
+#            with np.errstate(invalid='ignore'):
+#                final_array /= final_footprint
+#
+#    elif combine_function == 'median':
+#
         # Here we need to operate in chunks since we could otherwise run
         # into memory issues
 
-        raise NotImplementedError("combine_function='median' is "
-                                  "not yet implemented")
+#        raise NotImplementedError("combine_function='median' is "
+#                                  "not yet implemented")
 
-    return final_array, final_footprint
+    return arrays
