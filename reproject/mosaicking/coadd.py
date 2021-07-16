@@ -71,7 +71,7 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
     kwargs
         Keyword arguments to be passed to the reprojection function.
     """
-    print("THIS IS A TEST")
+    
     # TODO: add support for saving intermediate files to disk to avoid blowing
     # up memory usage. We could probably still have references to array
     # objects, but we'd just make sure these were memory mapped
@@ -85,7 +85,7 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
 
     if reproject_function is None:
         raise ValueError("reprojection function should be specified with "
-                         "the reproject_function argument")
+                         "the reproject_function argument, TEST")
 
     # Parse the output projection to avoid having to do it for each
 
