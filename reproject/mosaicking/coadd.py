@@ -12,7 +12,7 @@ __all__ = ['reproject_and_coadd']
 def reproject_and_coadd(input_data, output_projection, shape_out=None,
                         input_weights=None, hdu_in=None, reproject_function=None,
                         hdu_weights=None, combine_function='mean', match_background=False,
-                        background_reference=None, testvar=None, **kwargs):
+                        background_reference=None, **kwargs):
     """
     Given a set of input images, reproject and co-add these to a single
     final image.
@@ -71,7 +71,7 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
     kwargs
         Keyword arguments to be passed to the reprojection function.
     """
-
+    print("THIS IS A TEST")
     # TODO: add support for saving intermediate files to disk to avoid blowing
     # up memory usage. We could probably still have references to array
     # objects, but we'd just make sure these were memory mapped
@@ -80,8 +80,8 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
 
     # Validate inputs
 
-    if combine_function not in ('mean', 'sum', 'median'):
-        raise ValueError("combine_function should be one of mean/sum/median")
+#    if combine_function not in ('mean', 'sum', 'median'):
+#        raise ValueError("combine_function should be one of mean/sum/median")
 
     if reproject_function is None:
         raise ValueError("reprojection function should be specified with "
