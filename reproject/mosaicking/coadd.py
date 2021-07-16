@@ -190,6 +190,8 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
             corrections -= corrections[background_reference]
         for array, correction in zip(arrays, corrections):
             array.array -= correction
+            
+    print("THIS IS A TEST")
 
     # At this point, the images are now ready to be co-added.
 
