@@ -223,4 +223,4 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
 #        raise NotImplementedError("combine_function='median' is "
 #                                  "not yet implemented")
 
-    return [a.arrays for a in arrays]
+    return [a.array for a in arrays]
