@@ -70,6 +70,7 @@ def _reproject_full(array, wcs_in, wcs_out, shape_out, order=1, array_out=None,
     _validate_wcs(wcs_in, wcs_out, shape_out)
 
     # Make sure image is floating point
+    print(array)
     array = np.asarray(array, dtype=float)
     # shape_out must be exact a tuple type
     shape_out = tuple(shape_out)
