@@ -107,6 +107,8 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
             weights_in = None
         else:
             weights_in = parse_input_weights(input_weights[idata], hdu_weights=hdu_weights)
+            print(weights_in)
+            print(type(weights_in))
             if np.any(np.isnan(weights_in)):
                 weights_in = np.nan_to_num(weights_in)
 
