@@ -174,8 +174,8 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
         #    weights[reset] = 0.
         #    footprint *= weights
 
-        #array = ReprojectedArraySubset(array, footprint,
-        #                               imin, imax, jmin, jmax)
+        array = ReprojectedArraySubset(array, footprint,
+                                       imin, imax, jmin, jmax)
 
         # TODO: make sure we gracefully handle the case where the
         # output image is empty (due e.g. to no overlap).
@@ -190,6 +190,7 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
             corrections -= corrections[background_reference]
         for array, correction in zip(arrays, corrections):
             array.array -= correction
+           
 
     # At this point, the images are now ready to be co-added.
 
@@ -222,4 +223,4 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
 #        raise NotImplementedError("combine_function='median' is "
 #                                  "not yet implemented")
 
-    return arrays
+    return [a.arrays for a in arrays]
