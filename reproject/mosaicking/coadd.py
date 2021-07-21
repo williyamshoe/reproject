@@ -107,7 +107,7 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
             weights_in = None
         else:
             weights_in = parse_input_weights(input_weights[idata], hdu_weights=hdu_weights)[0]
-            weights_in = np.nan_to_num(weights_in)
+            # weights_in = np.nan_to_num(weights_in)
 
         # Since we might be reprojecting small images into a large mosaic we
         # want to make sure that for each image we reproject to an array with
@@ -149,19 +149,19 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
         # able to handle weights, and make the footprint become the combined
         # footprint + weight map
 
-        array, footprint = reproject_function((array_in, wcs_in),
+        array, footprint = reproject_function((array_in*weights_in, wcs_in),
                                               output_projection=wcs_out_indiv,
                                               shape_out=shape_out_indiv,
                                               hdu_in=hdu_in,
                                               **kwargs)
 
-        if weights_in is not None:
-            # print(weights_in)
-            weights, _ = reproject_function((weights_in, wcs_in),
-                                            output_projection=wcs_out_indiv,
-                                            shape_out=shape_out_indiv,
-                                            hdu_in=hdu_in,
-                                            **kwargs)
+        #if weights_in is not None:
+        #    # print(weights_in)
+        #    weights, _ = reproject_function((weights_in, wcs_in),
+        #                                    output_projection=wcs_out_indiv,
+        #                                    shape_out=shape_out_indiv,
+        #                                    hdu_in=hdu_in,
+        #                                    **kwargs)
 
         # For the purposes of mosaicking, we mask out NaN values from the array
         # and set the footprint to 0 at these locations.
@@ -170,12 +170,12 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
         footprint[reset] = 0.
 
         # Combine weights and footprint
-        if weights_in is not None:
-            weights[reset] = 0.
-            footprint *= weights
+        #if weights_in is not None:
+        #    weights[reset] = 0.
+        #    footprint *= weights
 
-        array = ReprojectedArraySubset(array, footprint,
-                                       imin, imax, jmin, jmax)
+        #array = ReprojectedArraySubset(array, footprint,
+        #                               imin, imax, jmin, jmax)
 
         # TODO: make sure we gracefully handle the case where the
         # output image is empty (due e.g. to no overlap).
