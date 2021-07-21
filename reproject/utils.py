@@ -79,7 +79,7 @@ def parse_input_weights(input_weights, hdu_weights=None):
     """
 
     if isinstance(input_weights, str):
-        return parse_input_data(fits.open(input_weights), hdu_weights=hdu_weights)
+        return parse_input_data(fits.open(input_weights))
     elif isinstance(input_weights, HDUList):
         if hdu_weights is None:
             if len(input_weights) > 1:
