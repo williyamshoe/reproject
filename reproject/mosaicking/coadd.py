@@ -106,7 +106,7 @@ def reproject_and_coadd(input_data, output_projection, shape_out=None,
         if input_weights is None:
             weights_in = None
         else:
-            weights_in = parse_input_data(input_weights[idata], hdu_weights=hdu_weights)
+            weights_in = parse_input_data(input_weights[idata], hdu_in=hdu_weights)
             weights_in = np.nan_to_num(weights_in)
 
         # Since we might be reprojecting small images into a large mosaic we
